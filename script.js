@@ -88,6 +88,39 @@ document.querySelector('.nav__links').addEventListener('click', (e) => {
   }
 });
 
+// TABBED COMPONENT
+const tabs = document.querySelectorAll('.operations__tab');
+const tabsContainer = document.querySelector('.operations__tab-container');
+const tabsContent = document.querySelectorAll('.operations__content');
+
+//bad practice, use event delegation instead
+// tabs.forEach((t) => t.addEventListener('click', () => {
+//   console.log('Tab')
+// }))
+
+tabsContainer.addEventListener('click', (e) => {
+  const clicked = e.target.closest('.operations__tab');
+
+  //Guard clause (return early if nothing matches)
+  if (!clicked) return;
+
+  //ACTIVE TAB
+  //remove 'active status from existing'
+  tabs.forEach((tab) => tab.classList.remove('operations__tab--active'));
+  //'add active status to clicked
+  clicked.classList.add('operations__tab--active');
+
+  //ACTIVE CONTENT AREA
+  //remove active status from existing
+  tabsContent.forEach((content) =>
+    content.classList.remove('operations__content--active')
+  );
+  //add active status to clicked, using the dataset (data-tab in html)
+  document
+    .querySelector(`.operations__content--${clicked.dataset.tab}`)
+    .classList.add('operations__content--active');
+});
+
 /////////////////////////////
 /*
 console.log(document.documentElement); // logs entire doc
@@ -267,5 +300,45 @@ document.querySelector('.nav__links').addEventListener('click', (e) => {
 document.querySelector('.nav').addEventListener('click', (e) => {
   e.currentTarget.style.backgroundColor = randomColor();
   console.log('NAV', e.target, e.currentTarget);
+});
+
+const h1 = document.querySelector('h1');
+//GOING DOWNWARDS: child elements
+//1. use queryselector
+// since .highlight is a child of the h1 parent, they are selected.
+// other elems with the class of .highlight won't be selected
+console.log(h1.querySelectorAll('.highlight'));
+console.log(h1.childNodes); // not really used, returns everything within the h1
+console.log(h1.children); // gives an HTML collection (live updates)
+// only works for DIRECT children
+h1.firstElementChild.style.color = 'white'; // only first child
+h1.lastElementChild.style.color = 'orangered'; // only last child
+
+//GOING UPWARDS: selecting parent elements
+console.log(h1.parentNode);
+console.log(h1.parentElement);
+// closest will select parent element of h1
+// POPULAR
+h1.closest('.header').style.background = 'var(--gradient-secondary)';
+// the closest parent element here is the h1 itself
+h1.closest('h1').style.background = 'var(--gradient-primary)';
+// think of closest as the opposite of queryselector.
+// closest finds parents, queryselector find children
+
+//GOING SIDEWAYS: siblings
+console.log(h1.previousElementSibling); // null
+console.log(h1.nextElementSibling); // the h4 that comes after the h1
+
+console.log(h1.previousSibling); // returns #text
+console.log(h1.nextSibling); // returns #text
+
+//all siblings
+console.log(h1.parentElement.children); // nodes of siblings + itself
+
+//this will spread the nodes into an array that we can iterate over
+[...h1.parentElement.children].forEach((el) => {
+  if (el !== h1) {
+    el.style.transform = 'scale(0.5)'
+  }
 });
 */
