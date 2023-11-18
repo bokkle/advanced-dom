@@ -111,6 +111,7 @@ tabsContainer.addEventListener('click', (e) => {
   clicked.classList.add('operations__tab--active');
 
   //ACTIVE CONTENT AREA
+
   //remove active status from existing
   tabsContent.forEach((content) =>
     content.classList.remove('operations__content--active')
@@ -123,6 +124,7 @@ tabsContainer.addEventListener('click', (e) => {
 
 /////////////////////////////
 /*
+//;))
 console.log(document.documentElement); // logs entire doc
 console.log(document.head); // logs doc head
 console.log(document.body); // logs doc body
