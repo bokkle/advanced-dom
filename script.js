@@ -38,16 +38,15 @@ document.addEventListener('keydown', function (e) {
 
 btnScrollTo.addEventListener('click', (e) => {
   const s1coords = section1.getBoundingClientRect();
-  console.log(s1coords);
 
-  console.log(e.target.getBoundingClientRect());
-  console.log('Current scroll (X/Y)', window.pageXOffset, window.pageYOffset);
+  // console.log(e.target.getBoundingClientRect());
+  // console.log('Current scroll (X/Y)', window.pageXOffset, window.pageYOffset);
 
-  console.log(
-    'height/width viewport',
-    document.documentElement.clientHeight,
-    document.documentElement.clientWidth
-  );
+  // console.log(
+  //   'height/width viewport',
+  //   document.documentElement.clientHeight,
+  //   document.documentElement.clientWidth
+  // );
 
   //SCROLLING
   //   window.scrollTo(
@@ -226,7 +225,7 @@ const imgTargets = document.querySelectorAll('img[data-src]');
 
 const loadImg = (entries, observer) => {
   const [entry] = entries;
-  console.log(entry);
+  // console.log(entry);
 
   if (!entry.isIntersecting) return;
 
@@ -552,3 +551,18 @@ console.log(h1.parentElement.children); // nodes of siblings + itself
   }
 });
 */
+
+// document.addEventListener('DOMContentLoaded', (e) => {
+//   console.log('HTML Parsed and DOM tree built', e);
+// });
+
+// window.addEventListener('load', (e) => {
+//   console.log('Page fully loaded', e);
+// });
+
+// PREVENT PPL FROM LEAVING SITE
+// window.addEventListener('beforeunload', (e) => {
+//   e.preventDefault();
+//   console.log(e);
+//   e.returnValue = '';
+// });
